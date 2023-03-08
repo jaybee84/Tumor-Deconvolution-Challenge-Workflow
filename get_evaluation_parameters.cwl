@@ -199,18 +199,18 @@ expression: |
        },
        "9615316": {
         //Tumor_Post-Challenge_Revision_Dataset1-Coarse
-        gold_standard_id: "syn50918679",
-        docker_input_directory: "/home/ubuntu/validation_revision_coarse_dir",
-        docker_param_directory: "/home/ubuntu/validation_revision_coarse_param_dir",
+        gold_standard_id: "syn50918973",
+        docker_input_directory: "/home/ec2-user/validation_revision_coarse_dir",
+        docker_param_directory: "/home/ec2-user/validation_revision_coarse_param_dir",
         score_submission: true,
         cores: 8,
         ram: 30000
        },
        "9615315": {
         //Tumor_Post-Challenge_Revision_Dataset1-Fine
-        gold_standard_id: "syn50918679",
-        docker_input_directory: "/home/ubuntu/validation_revision_fine_dir",
-        docker_param_directory: "/home/ubuntu/validation_revision_fine_param_dir",
+        gold_standard_id: "syn50918965",
+        docker_input_directory: "/home/ec2-user/validation_revision_fine_dir",
+        docker_param_directory: "/home/ec2-user/validation_revision_fine_param_dir",
         score_submission: true,
         cores: 8,
         ram: 30000
