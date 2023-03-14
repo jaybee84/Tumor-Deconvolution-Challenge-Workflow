@@ -59,7 +59,7 @@ steps:
       - id: ram
 
   - id: get_docker_submission
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.4/get_submission.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/get_submission.cwl
     in:
       - id: submissionid
         source: submissionId
@@ -74,12 +74,10 @@ steps:
       - id: results
 
   - id: validate_docker
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.4/validate_docker.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/validate_docker.cwl
     in:
-      - id: docker_repository
-        source: get_docker_submission/docker_repository
-      - id: docker_digest
-        source: get_docker_submission/docker_digest
+      - id: submissionid
+        source: submissionId
       - id: synapse_config
         source: synapseConfig
     out:
@@ -88,7 +86,7 @@ steps:
       - id: invalid_reasons
 
   - id: annotate_docker_validation_with_output
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.3/annotate_submission.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/annotate_submission.cwl
     in:
       - id: submissionid
         source: submissionId
@@ -96,14 +94,14 @@ steps:
         source: validate_docker/results
       - id: to_public
         valueFrom: $(true)
-      - id: force_change_annotation_acl
+      - id: force
         valueFrom: $(true)
       - id: synapse_config
         source: synapseConfig
     out: []
 
   - id: get_docker_config
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.4/get_docker_config.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/get_docker_config.cwl
     in:
       - id: synapse_config
         source: synapseConfig
@@ -165,7 +163,7 @@ steps:
     out: []
 
   - id: download_goldstandard
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/v0.1/synapse-get-tool.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks-Workflows/cwl-tool-synapseclient/v1.4/cwl/synapse-get-tool.cwl
     in:
     - id: synapseid
       source: get_evaluation_parameters/gold_standard_id
@@ -192,7 +190,7 @@ steps:
     - id: invalid_reason_string
 
   - id: annotate_submission
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.3/annotate_submission.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/annotate_submission.cwl
     in:
       - id: submissionid
         source: submissionId
@@ -200,7 +198,7 @@ steps:
         source: process_prediction_file/annotation_json
       - id: to_public
         valueFrom: $(true)
-      - id: force_change_annotation_acl
+      - id: force
         valueFrom: $(true)
       - id: synapse_config
         source: synapseConfig
