@@ -88,7 +88,7 @@ steps:
       - id: invalid_reasons
 
   - id: annotate_docker_validation_with_output
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/annotate_submission.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.3/annotate_submission.cwl
     in:
       - id: submissionid
         source: submissionId
@@ -96,7 +96,7 @@ steps:
         source: validate_docker/results
       - id: to_public
         valueFrom: $(true)
-      - id: force
+      - id: force_change_annotation_acl
         valueFrom: $(true)
       - id: synapse_config
         source: synapseConfig
@@ -192,7 +192,7 @@ steps:
     - id: invalid_reason_string
 
   - id: annotate_submission
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/annotate_submission.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.3/annotate_submission.cwl
     in:
       - id: submissionid
         source: submissionId
@@ -200,7 +200,7 @@ steps:
         source: process_prediction_file/annotation_json
       - id: to_public
         valueFrom: $(true)
-      - id: force
+      - id: force_change_annotation_acl
         valueFrom: $(true)
       - id: synapse_config
         source: synapseConfig
