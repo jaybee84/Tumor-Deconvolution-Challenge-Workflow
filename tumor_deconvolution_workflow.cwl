@@ -96,7 +96,7 @@ steps:
         source: validate_docker/results
       - id: to_public
         valueFrom: $(true)
-      - id: force_change_annotation_acl
+      - id: force
         valueFrom: $(true)
       - id: synapse_config
         source: synapseConfig
@@ -200,7 +200,7 @@ steps:
         source: process_prediction_file/annotation_json
       - id: to_public
         valueFrom: $(true)
-      - id: force_change_annotation_acl
+      - id: force
         valueFrom: $(true)
       - id: synapse_config
         source: synapseConfig
