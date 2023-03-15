@@ -189,20 +189,31 @@ steps:
     - id: annotation_string
     - id: invalid_reason_string
 
-  - id: annotate_submission
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/annotate_submission.cwl
-    in:
-      - id: submissionid
-        source: submissionId
-      - id: annotation_values
-        source: process_prediction_file/annotation_json
-      - id: to_public
-        valueFrom: $(true)
-      - id: force
-        valueFrom: $(true)
-      - id: synapse_config
-        source: synapseConfig
+  - id: store_prediction_file
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/v0.1/synapse-store-tool.cwl
+    in: 
+    - id: synapse_config
+      source: synapseConfig
+    - id: file_to_store
+      source: process_prediction_file/annotation_json
+    - id: parentid
+      source: submitterUploadSynId
     out: []
+
+  # - id: annotate_submission
+  #   run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v3.1/cwl/annotate_submission.cwl
+  #   in:
+  #     - id: submissionid
+  #       source: submissionId
+  #     - id: annotation_values
+  #       source: process_prediction_file/annotation_json
+  #     - id: to_public
+  #       valueFrom: $(true)
+  #     - id: force
+  #       valueFrom: $(true)
+  #     - id: synapse_config
+  #       source: synapseConfig
+  #   out: []
 
   - id: create_email_message
     run: create_email_message.cwl
