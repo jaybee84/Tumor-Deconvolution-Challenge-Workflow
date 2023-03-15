@@ -201,7 +201,7 @@ steps:
     - id: annotation_string
     - id: invalid_reason_string
 
-  - id: store_prediction_file
+  - id: store_scores_file
     run: https://raw.githubusercontent.com/Sage-Bionetworks/synapse-client-cwl-tools/v0.1/synapse-store-tool.cwl
     in: 
     - id: synapse_config
